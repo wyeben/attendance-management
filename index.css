@@ -1,12 +1,15 @@
-body, h3{
-    margin: 0;
-    padding: 0;
-    background-image: url("assert/images.png");
+body ,h3{
+    
   }
   
   body {
     font-family: Arial, sans-serif;
-    background-color: black;
+    background-color: rgb(246, 242, 242);
+    margin: 0;
+    padding: 0;
+    background-image: url("assert/images.png");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   #main-div {

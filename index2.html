@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Management Frontend</title>
+</head>
+<body>
+    <h1>Attendance Management</h1>
+    
+    <form id="attendanceForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+        
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status"><br><br>
+        
+        <button type="button" onclick="saveAttendance()">Save Attendance</button>
+    </form>
+    
+    <script>
+        function saveAttendance() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const date = document.getElementById('date').value;
+            const status = document.getElementById('status').value;
+            
+            const data = {
+                firstName: firstName,
+                lastName: lastName,
+                date: date,
+                status: status
+            };
+
+const backendUrl = "http://localhost:1990/attendance-management/register";
+fetch(backendUrl, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => {
+    if (!response.ok) {
+        console.log(response);
+        throw new Error('HTTP error, status = ' + response.status);
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Success:', data);
+    alert('Attendance and User saved successfully');
+})
+.catch((error) => {
+    console.error('Error:', error);
+    alert('Error saving attendance: ' + error.message);
+});
+
+
+        }
+    </script>
+</body>
+</html>
